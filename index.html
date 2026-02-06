@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>NEXUS Tools</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",sans-serif;
+}
+
+body{
+    background:#05040a;
+    color:#eae6ff;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+}
+
+/* background glow */
+.bg-glow,.bg-glow2{
+    position:fixed;
+    width:420px;
+    height:420px;
+    filter:blur(90px);
+    z-index:-1;
+}
+.bg-glow{
+    top:-120px;
+    left:-120px;
+    background:radial-gradient(circle,rgba(120,60,255,.45),transparent 70%);
+}
+.bg-glow2{
+    bottom:-120px;
+    right:-120px;
+    background:radial-gradient(circle,rgba(200,90,255,.35),transparent 70%);
+}
+
+/* center content (half screen) */
+.center-content{
+    min-height:50vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+/* hero */
+.hero{
+    text-align:center;
+    padding:40px 20px 30px;
+}
+.hero h1{
+    font-size:55px;
+    font-weight:800;
+    background:linear-gradient(90deg,#b48efb,#e1ccff);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+.hero p{
+    margin-top:14px;
+    font-size:18px;
+    color:#cbb6ff;
+    opacity:.9;
+}
+
+/* cards */
+.products{
+    display:flex;
+    justify-content:center;
+    gap:35px;
+    flex-wrap:wrap;
+    padding:10px 20px 30px;
+}
+
+.card{
+    width:300px;
+    padding:26px;
+    border-radius:20px;
+    text-align:center;
+    background:linear-gradient(
+        180deg,
+        rgba(140,90,255,0.12),
+        rgba(255,255,255,0.04)
+    );
+    border:1px solid rgba(180,120,255,.25);
+    backdrop-filter:blur(12px);
+    box-shadow:0 0 30px rgba(130,70,255,.18);
+    transition:.35s;
+}
+.card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 0 55px rgba(170,100,255,.5);
+}
+
+.card h3{
+    font-size:22px;
+    margin-bottom:10px;
+    color:#e0caff;
+}
+.card p{
+    font-size:15px;
+    opacity:.85;
+    line-height:1.6;
+    margin-bottom:22px;
+}
+
+.card button{
+    width:100%;
+    padding:12px 0;
+    font-size:15px;
+    font-weight:700;
+    color:#fff;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    background:linear-gradient(90deg,#9b5cff,#caa0ff);
+    box-shadow:0 0 18px rgba(160,90,255,.55);
+    transition:.25s;
+}
+.card button:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 28px rgba(190,120,255,.8);
+}
+
+/* bottom bar */
+.bottom-bar{
+    margin-top:auto;
+    height:55px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-top:1px solid rgba(180,120,255,.18);
+    background:rgba(10,8,20,.6);
+    backdrop-filter:blur(10px);
+    color:#a89ad6;
+    font-size:14px;
+}
+.bottom-bar a{
+    color:#caa8ff;
+    text-decoration:none;
+    font-weight:700;
+    margin-left:6px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg-glow"></div>
+<div class="bg-glow2"></div>
+
+<div class="center-content">
+
+    <section class="hero">
+        <h1>NEXUS Tools</h1>
+        <p>All tools are 100% free clean, simple & powerful.</p>
+    </section>
+
+    <div class="products">
+
+        <div class="card">
+            <h3>NEXUS AIO</h3>
+            <p>Full control panel for GameLoop, optimization & system tools.</p>
+            <button onclick="window.open('https://k2nt1.alwaysdata.net/Mode/Update/NEXUS.exe')">
+                Download
+            </button>
+        </div>
+
+        <div class="card">
+            <h3>Graphics Changer</h3>
+            <p>Unlock full graphics,<br>Max FPS and Ultra HDR.</p>
+            <button onclick="window.open('https://k2nt1.alwaysdata.net/Mode/Update/Changer.exe')">
+                Download
+            </button>
+        </div>
+
+        <div class="card">
+            <h3>Injector</h3>
+            <p>Inject libs, reset guest,<br>EmulatorEx / En support.</p>
+            <button onclick="window.open('https://k2nt1.alwaysdata.net/Mode/Update/Injector.exe')">
+                Download
+            </button>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="bottom-bar">
+    © 2026 NEXUS All Rights Reserved |
+    <a href="https://discord.gg/jGAvqZXuZz">Discord</a>
+</div>
+
+</body>
+</html>
