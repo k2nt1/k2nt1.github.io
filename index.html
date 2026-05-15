@@ -20,7 +20,7 @@
         }
 
         body{
-            background:#05040a; /* نفس لون الموقع القديم */
+            background:#05040a;
             color:#eae6ff;
             min-height:100vh;
             display:flex;
@@ -28,23 +28,23 @@
             overflow-x: hidden;
         }
 
-        /* تأثيرات التوهج الخلفي (Glow) من الموقع القديم */
+        /* Background Glow Effects */
         .bg-glow, .bg-glow2 {
             position:fixed;
-            width:500px;
-            height:500px;
-            filter:blur(100px);
+            width:600px;
+            height:600px;
+            filter:blur(120px);
             z-index:-1;
         }
         .bg-glow{
-            top:-150px;
-            left:-150px;
-            background:radial-gradient(circle,rgba(112,51,255,.4),transparent 70%);
+            top:-200px;
+            left:-200px;
+            background:radial-gradient(circle,rgba(112,51,255,.35),transparent 70%);
         }
         .bg-glow2{
-            bottom:-150px;
-            right:-150px;
-            background:radial-gradient(circle,rgba(180,90,255,.3),transparent 70%);
+            bottom:-200px;
+            right:-200px;
+            background:radial-gradient(circle,rgba(180,90,255,.25),transparent 70%);
         }
 
         .center-content{
@@ -53,113 +53,146 @@
             flex-direction:column;
             justify-content:center;
             align-items: center;
-            padding: 40px 20px;
+            padding: 60px 20px;
         }
 
         /* Hero Section */
         .hero{
             text-align:center;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
         .hero h1{
-            font-size: clamp(45px, 10vw, 75px);
+            font-size: clamp(40px, 8vw, 70px);
             font-weight:800;
             background:linear-gradient(90deg,#b48efb,#e1ccff);
             -webkit-background-clip:text;
             color:transparent;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
         }
         .hero p{
-            margin-top:10px;
+            margin-top:12px;
             font-size:20px;
             color:#cbb6ff;
-            opacity:.8;
+            opacity:.7;
         }
 
-        /* Card - نسخة محسنة من ثيم الموقع القديم لبرنامج واحد */
+        /* Main Glass Card */
         .main-card{
-            max-width: 800px;
+            max-width: 950px;
             width: 100%;
-            padding: 40px;
-            border-radius: 24px;
-            background: linear-gradient(180deg, rgba(140,90,255,0.15), rgba(255,255,255,0.05));
-            border: 1px solid rgba(180,120,255,.3);
-            backdrop-filter: blur(15px);
-            box-shadow: 0 0 40px rgba(130,70,255,.2);
+            padding: 50px;
+            border-radius: 28px;
+            background: linear-gradient(180deg, rgba(140,90,255,0.12), rgba(255,255,255,0.03));
+            border: 1px solid rgba(180,120,255,.25);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 0 50px rgba(130,70,255,.15);
             text-align: center;
         }
 
-        .description-text {
+        .description-header {
             text-align: left;
-            margin-bottom: 35px;
-            line-height: 1.8;
+            margin-bottom: 40px;
         }
 
-        .description-text h2 {
+        .description-header h2 {
             color: #b48efb;
-            font-size: 24px;
+            font-size: 26px;
             margin-bottom: 15px;
-            border-left: 4px solid #7033ff;
+            border-left: 5px solid #7033ff;
             padding-left: 15px;
         }
 
-        .description-text p {
+        .description-header p {
             color: #d1c4ff;
-            font-size: 16px;
-            margin-bottom: 20px;
+            font-size: 17px;
+            line-height: 1.7;
         }
 
-        .features-list {
+        /* Features Grid - 10 Items */
+        .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
-            margin-top: 20px;
+            margin-bottom: 45px;
         }
 
-        .feature-item {
-            background: rgba(112, 51, 255, 0.1);
-            padding: 12px;
-            border-radius: 10px;
-            font-size: 14px;
-            border: 1px solid rgba(112, 51, 255, 0.2);
+        .feature-box {
+            background: rgba(112, 51, 255, 0.08);
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 500;
+            border: 1px solid rgba(112, 51, 255, 0.15);
             color: #e1ccff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: 0.3s ease;
         }
 
-        /* زر التحميل بنفس ستايل الموقع القديم */
+        .feature-box:hover {
+            background: rgba(112, 51, 255, 0.15);
+            border-color: rgba(180, 120, 255, 0.4);
+            transform: translateY(-3px);
+        }
+
+        /* Download Button */
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
         .download-btn {
             display: inline-block;
             width: 100%;
-            max-width: 350px;
-            margin-top: 20px;
-            padding: 18px 0;
-            font-size: 18px;
+            max-width: 400px;
+            padding: 20px 0;
+            font-size: 20px;
             font-weight: 700;
             color: #fff;
             text-decoration: none;
-            border-radius: 12px;
-            cursor: pointer;
+            border-radius: 14px;
             background: linear-gradient(90deg, #7033ff, #b48efb);
-            box-shadow: 0 0 25px rgba(112, 51, 255, 0.6);
-            transition: .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 0 30px rgba(112, 51, 255, 0.5);
+            transition: .4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .download-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 40px rgba(112, 51, 255, 0.8);
+            transform: scale(1.03);
+            box-shadow: 0 0 50px rgba(112, 51, 255, 0.75);
+            filter: brightness(1.1);
         }
 
+        .version-info {
+            font-size: 13px;
+            color: #a89ad6;
+            opacity: 0.6;
+        }
+
+        /* Footer */
         .bottom-bar{
             margin-top:auto;
-            height:60px;
+            height:70px;
             display:flex;
             align-items:center;
             justify-content:center;
-            border-top:1px solid rgba(180,120,255,.15);
-            background:rgba(10,8,20,.6);
-            backdrop-filter:blur(10px);
-            color:#a89ad6;
-            font-size:14px;
+            border-top: 1px solid rgba(180,120,255,.1);
+            background: rgba(5, 4, 10, 0.8);
+            backdrop-filter: blur(10px);
+            color: #7a6da3;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 600px) {
+            .main-card { padding: 30px 20px; }
+            .features-grid { grid-template-columns: 1fr 1fr; }
+            .feature-box { font-size: 13px; padding: 12px; }
         }
     </style>
 </head>
@@ -173,36 +206,43 @@
 
     <section class="hero">
         <h1>NEXUS AIO</h1>
-        <p>Professional System & Game Optimization Suite</p>
+        <p>Advanced System Management & Performance Suite</p>
     </section>
 
     <div class="main-card">
-        <div class="description-text">
-            <h2>Ultimate Performance</h2>
+        <div class="description-header">
+            <h2>Ultimate Performance Control</h2>
             <p>
-                Nexus AIO is a high-performance, all-in-one management utility designed for power users and competitive gamers. 
-                Built with a focus on minimalism and efficiency, it provides a centralized interface to monitor system health and fine-tune your PC.
+                Nexus AIO is a high-performance, all-in-one management utility designed for power users, developers, and competitive gamers. 
+                Experience a centralized interface to monitor system health and automate complex optimizations in a lightweight, visually striking package.
             </p>
-            
-            <div class="features-list">
-                <div class="feature-item">📊 Real-Time Monitoring</div>
-                <div class="feature-item">🛠️ Advanced Toolkit</div>
-                <div class="feature-item">🎮 Game Optimization</div>
-                <div class="feature-item">🚀 120 FPS Unlocked</div>
-            </div>
         </div>
 
-        <a href="https://raw.githubusercontent.com/k2nt1/Update/refs/heads/main/NEXUS.exe" class="download-btn">
-            Download NEXUS.exe
-        </a>
-        
-        <p style="margin-top: 20px; font-size: 13px; opacity: 0.6;">Compatible with Windows 10 & 11</p>
+        <div class="features-grid">
+            <div class="feature-box">📊 Real-Time Monitoring</div>
+            <div class="feature-box">🛠️ Advanced Toolkit</div>
+            <div class="feature-box">🎮 Game Optimization</div>
+            <div class="feature-box">🚀 120 FPS Unlocked</div>
+            <div class="feature-box">⚡ Instant Deployment</div>
+            <div class="feature-box">🛡️ Defender Control</div>
+            <div class="feature-box">🧹 Smart Cache Cleaner</div>
+            <div class="feature-box">📡 Network Optimizer</div>
+            <div class="feature-box">📱 Emulator Specialist</div>
+            <div class="feature-box">💎 Minimalist Interface</div>
+        </div>
+
+        <div class="btn-container">
+            <a href="https://raw.githubusercontent.com/k2nt1/Update/refs/heads/main/NEXUS.exe" class="download-btn">
+                Download NEXUS.exe
+            </a>
+            <span class="version-info">Supported on Windows 10 & 11 | Clean & Secure</span>
+        </div>
     </div>
 
 </div>
 
 <div class="bottom-bar">
-    © 2026 NEXUS Project. Developed by k2nt1.
+    © 2026 NEXUS Project. Developed by k2nt1. All Rights Reserved.
 </div>
 
 </body>
