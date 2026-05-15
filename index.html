@@ -2,11 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>NEXUS AIO | Elite System Architecture & Optimization</title>
+    <title>NEXUS AIO | Elite System Architecture</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="Nexus.png">
 
     <style>
+        :root {
+            --primary: #7033ff;
+            --secondary: #b48efb;
+            --bg-dark: #05040a;
+        }
+
         *{
             margin:0;
             padding:0;
@@ -15,31 +21,39 @@
         }
 
         body{
-            background:#05040a;
+            background: var(--bg-dark);
             color:#eae6ff;
             height: 100vh;
             display: flex;
             flex-direction: column;
-            overflow: hidden; /* يمنع التمرير */
+            overflow: hidden;
         }
 
-        /* تأثيرات التوهج الخلفي المستوحاة من الموقع القديم */
+        /* --- أنميشن تحريك الخلفية --- */
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(30px, 20px); }
+            100% { transform: translate(0, 0); }
+        }
+
         .bg-glow, .bg-glow2 {
             position:fixed;
             width:600px;
             height:600px;
             filter:blur(120px);
             z-index:-1;
+            animation: float 10s ease-in-out infinite;
         }
         .bg-glow{
             top:-200px;
             left:-200px;
-            background:radial-gradient(circle,rgba(112,51,255,.4),transparent 70%);
+            background:radial-gradient(circle,rgba(112,51,255,.3),transparent 70%);
         }
         .bg-glow2{
             bottom:-200px;
             right:-200px;
-            background:radial-gradient(circle,rgba(180,90,255,.3),transparent 70%);
+            background:radial-gradient(circle,rgba(180,90,255,.2),transparent 70%);
+            animation-delay: -5s;
         }
 
         .wrapper {
@@ -51,11 +65,13 @@
             padding: 20px;
         }
 
-        .hero{
-            text-align:center;
-            margin-bottom: 20px;
+        /* --- أنميشن ظهور النص --- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        .hero h1{
+
+        .hero h1 {
             font-size: clamp(35px, 5vw, 65px);
             font-weight:900;
             background:linear-gradient(90deg,#b48efb,#e1ccff);
@@ -63,91 +79,110 @@
             color:transparent;
             text-transform: uppercase;
             letter-spacing: 4px;
+            animation: fadeInUp 0.8s ease-out forwards;
         }
 
-        /* كرت المحتوى الزجاجي */
-        .main-card{
+        .main-card {
             max-width: 1000px;
             width: 100%;
             padding: 40px;
             border-radius: 30px;
-            background: linear-gradient(180deg, rgba(140,90,255,0.15), rgba(255,255,255,0.05));
-            border: 1px solid rgba(180,120,255,.3);
+            background: linear-gradient(180deg, rgba(140,90,255,0.12), rgba(255,255,255,0.03));
+            border: 1px solid rgba(180,120,255,.25);
             backdrop-filter: blur(20px);
-            box-shadow: 0 0 50px rgba(130,70,255,.2);
-            text-align: center;
-        }
-
-        .description-text {
-            text-align: left;
-            margin-bottom: 35px;
+            box-shadow: 0 0 50px rgba(130,70,255,0.15);
+            animation: fadeInUp 1s ease-out 0.2s forwards;
+            opacity: 0;
         }
 
         .description-text h2 {
-            color: #b48efb;
+            color: var(--secondary);
             font-size: 24px;
             margin-bottom: 12px;
-            border-left: 5px solid #7033ff;
+            border-left: 5px solid var(--primary);
             padding-left: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
-        /* الوصف الجديد الأكثر تفصيلاً */
         .description-text p {
             color: #d1c4ff;
             font-size: 16px;
             line-height: 1.7;
-            opacity: 0.9;
         }
 
-        /* شبكة المميزات الـ 10 */
+        /* --- شبكة المميزات التفاعلية --- */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
             gap: 12px;
-            margin-bottom: 35px;
+            margin: 35px 0;
         }
 
         .feature-box {
-            background: rgba(112, 51, 255, 0.12);
+            background: rgba(112, 51, 255, 0.08);
             padding: 15px 5px;
             border-radius: 12px;
             font-size: 13px;
             font-weight: 600;
-            border: 1px solid rgba(112, 51, 255, 0.25);
+            border: 1px solid rgba(112, 51, 255, 0.15);
             color: #e1ccff;
-            white-space: nowrap;
-            transition: 0.3s;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            opacity: 0;
+            animation: fadeInUp 0.5s ease-out forwards;
         }
 
+        /* أنميشن ظهور الصناديق بالتتابع */
+        .feature-box:nth-child(1) { animation-delay: 0.4s; }
+        .feature-box:nth-child(2) { animation-delay: 0.5s; }
+        .feature-box:nth-child(3) { animation-delay: 0.6s; }
+        .feature-box:nth-child(4) { animation-delay: 0.7s; }
+        .feature-box:nth-child(5) { animation-delay: 0.8s; }
+        .feature-box:nth-child(6) { animation-delay: 0.9s; }
+        .feature-box:nth-child(7) { animation-delay: 1.0s; }
+        .feature-box:nth-child(8) { animation-delay: 1.1s; }
+        .feature-box:nth-child(9) { animation-delay: 1.2s; }
+        .feature-box:nth-child(10) { animation-delay: 1.3s; }
+
         .feature-box:hover {
-            background: rgba(112, 51, 255, 0.2);
-            transform: translateY(-3px);
-            border-color: rgba(180, 120, 255, 0.5);
+            background: rgba(112, 51, 255, 0.25);
+            transform: translateY(-8px) scale(1.05);
+            border-color: var(--secondary);
+            box-shadow: 0 10px 20px rgba(112, 51, 255, 0.3);
+            color: #fff;
+        }
+
+        /* --- زر التحميل اللامع --- */
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
         }
 
         .download-btn {
             display: inline-block;
             width: 100%;
             max-width: 420px;
-            padding: 18px 0;
+            padding: 20px 0;
             font-size: 20px;
             font-weight: 800;
             color: #fff;
             text-decoration: none;
             border-radius: 15px;
-            background: linear-gradient(90deg, #7033ff, #b48efb);
-            box-shadow: 0 0 30px rgba(112, 51, 255, 0.6);
-            transition: .4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: linear-gradient(90deg, #7033ff, #b48efb, #7033ff);
+            background-size: 200% auto;
+            box-shadow: 0 0 30px rgba(112, 51, 255, 0.5);
+            transition: 0.4s;
+            animation: fadeInUp 0.8s ease-out 1.5s forwards, shimmer 3s linear infinite;
+            opacity: 0;
+            text-align: center;
         }
 
         .download-btn:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 45px rgba(112, 51, 255, 0.8);
+            box-shadow: 0 0 50px rgba(112, 51, 255, 0.8);
+            filter: brightness(1.2);
         }
 
-        .bottom-bar{
+        .bottom-bar {
             height: 60px;
             display: flex;
             align-items: center;
@@ -156,9 +191,10 @@
             background: rgba(5, 4, 10, 0.8);
             color: #7a6da3;
             font-size: 14px;
+            animation: fadeInUp 0.8s ease-out 1.8s forwards;
+            opacity: 0;
         }
 
-        /* الاستجابة للشاشات الصغيرة */
         @media (max-width: 900px) {
             .features-grid { grid-template-columns: repeat(2, 1fr); }
             body { overflow-y: auto; height: auto; }
@@ -178,12 +214,12 @@
 
     <div class="main-card">
         <div class="description-text">
-            <h2>Ultimate System Architecture</h2>
+            <h2>Elite System Architecture</h2>
             <p>
                 NEXUS AIO is an elite, all-in-one management suite engineered for peak performance and total system transparency. 
-                It integrates real-time hardware telemetry with a professional-grade optimization engine to eliminate bottlenecks and reduce latency. 
-                Whether you're deploying critical drivers, automating Windows maintenance, or fine-tuning emulators for 120 FPS gameplay, 
-                NEXUS AIO provides a centralized, minimalist interface for power users who demand stability without compromise.
+                It integrates real-time hardware telemetry with a professional-grade optimization engine to eliminate bottlenecks. 
+                Whether you're automating Windows maintenance or fine-tuning emulators for 120 FPS, 
+                NEXUS AIO provides stability without compromise.
             </p>
         </div>
 
@@ -207,7 +243,7 @@
 </div>
 
 <div class="bottom-bar">
-    © 2026 NEXUS Project. All Rights Reserved. Developed by k2nt1.
+    © 2026 NEXUS Project. Developed by k2nt1.
 </div>
 
 </body>
