@@ -79,7 +79,7 @@
 
         /* Main Glass Card */
         .main-card{
-            max-width: 950px;
+            max-width: 1000px;
             width: 100%;
             padding: 50px;
             border-radius: 28px;
@@ -109,27 +109,28 @@
             line-height: 1.7;
         }
 
-        /* Features Grid - 10 Items */
+        /* Features Grid - Updated for better alignment */
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(4, 1fr); /* 4 أعمدة متساوية */
+            gap: 12px;
             margin-bottom: 45px;
         }
 
         .feature-box {
             background: rgba(112, 51, 255, 0.08);
-            padding: 16px;
+            padding: 18px 10px;
             border-radius: 12px;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 500;
             border: 1px solid rgba(112, 51, 255, 0.15);
             color: #e1ccff;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
             transition: 0.3s ease;
+            white-space: nowrap; /* منع النص من النزول لسطر جديد لضمان التناسق */
         }
 
         .feature-box:hover {
@@ -138,7 +139,7 @@
             transform: translateY(-3px);
         }
 
-        /* Download Button */
+        /* Download Button Section */
         .btn-container {
             display: flex;
             flex-direction: column;
@@ -173,7 +174,7 @@
             opacity: 0.6;
         }
 
-        /* Footer */
+        /* Footer Bar */
         .bottom-bar{
             margin-top:auto;
             height:70px;
@@ -188,11 +189,16 @@
             letter-spacing: 0.5px;
         }
 
+        /* Tablet Adjustments */
+        @media (max-width: 900px) {
+            .features-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
         /* Mobile Adjustments */
         @media (max-width: 600px) {
-            .main-card { padding: 30px 20px; }
-            .features-grid { grid-template-columns: 1fr 1fr; }
-            .feature-box { font-size: 13px; padding: 12px; }
+            .main-card { padding: 30px 15px; }
+            .features-grid { grid-template-columns: 1fr; }
+            .feature-box { font-size: 14px; padding: 15px; }
         }
     </style>
 </head>
@@ -213,8 +219,8 @@
         <div class="description-header">
             <h2>Ultimate Performance Control</h2>
             <p>
-                Nexus AIO is a high-performance, all-in-one management utility designed for power users, developers, and competitive gamers. 
-                Experience a centralized interface to monitor system health and automate complex optimizations in a lightweight, visually striking package.
+                Nexus AIO is a high-performance, all-in-one management utility designed for power users and competitive gamers. 
+                Monitor system health, automate Windows maintenance, and fine-tune game graphics through a centralized minimalist interface.
             </p>
         </div>
 
