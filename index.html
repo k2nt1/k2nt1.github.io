@@ -12,12 +12,12 @@
 
 :root{
 --bg:#050505;
---card:#0d0d0d;
+--card:rgba(18,18,18,.72);
 --primary:#8b5cf6;
 --primary2:#6d28d9;
---border:#181818;
---text:#ffffff;
---muted:#8a8a8a;
+--border:rgba(255,255,255,.06);
+--text:#fff;
+--muted:#8e8e8e;
 }
 
 *{
@@ -34,43 +34,56 @@ overflow-x:hidden;
 line-height:1.6;
 }
 
-/* Background Glow */
+/* Animated Background */
 
 body::before{
 content:'';
 position:fixed;
 inset:0;
+
 background:
-radial-gradient(circle at 20% 20%,rgba(139,92,246,.12),transparent 35%),
-radial-gradient(circle at 80% 60%,rgba(109,40,217,.10),transparent 35%);
+radial-gradient(circle at 15% 20%,rgba(139,92,246,.18),transparent 35%),
+radial-gradient(circle at 85% 70%,rgba(109,40,217,.15),transparent 35%);
+
+animation:moveGlow 12s infinite alternate ease-in-out;
+
 z-index:-2;
+}
+
+@keyframes moveGlow{
+from{
+transform:translateY(-30px);
+}
+to{
+transform:translateY(30px);
+}
 }
 
 /* Cursor Glow */
 
 #cursor-glow{
 position:fixed;
-width:500px;
-height:500px;
-background:radial-gradient(circle,rgba(139,92,246,.18),transparent 70%);
+width:650px;
+height:650px;
+background:radial-gradient(circle,rgba(139,92,246,.16),transparent 70%);
 pointer-events:none;
 z-index:-1;
 transform:translate(-50%,-50%);
 }
 
-/* Header */
+/* HEADER */
 
 header{
-max-width:1200px;
+max-width:1300px;
 margin:auto;
-padding:30px 25px;
+padding:35px 35px;
 display:flex;
 justify-content:space-between;
 align-items:center;
 }
 
 .logo{
-font-size:24px;
+font-size:30px;
 font-weight:900;
 letter-spacing:-1px;
 }
@@ -79,113 +92,180 @@ letter-spacing:-1px;
 text-decoration:none;
 color:var(--muted);
 font-weight:600;
-transition:.3s;
+transition:.35s;
 }
 
 .btn-developer:hover{
 color:var(--primary);
 }
 
-/* Hero */
+/* HERO */
 
 .hero{
-max-width:900px;
-margin:90px auto;
+max-width:1100px;
+margin:110px auto;
+padding:0 25px;
 text-align:center;
-padding:0 20px;
 }
 
 .hero h1{
-font-size:78px;
+
+font-size:92px;
+line-height:.9;
 font-weight:900;
-letter-spacing:-4px;
-line-height:.95;
-margin-bottom:25px;
+letter-spacing:-5px;
+
+background:linear-gradient(
+90deg,
+#ffffff,
+#d8b4fe,
+#8b5cf6
+);
+
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+
+margin-bottom:30px;
 }
 
 .hero p{
-color:var(--muted);
-font-size:19px;
-max-width:720px;
+
+max-width:760px;
 margin:auto;
-margin-bottom:45px;
+font-size:20px;
+color:var(--muted);
+margin-bottom:50px;
+
 }
 
-/* Button */
+/* BUTTON */
 
 .btn-primary{
+
 display:inline-flex;
 align-items:center;
-gap:10px;
-padding:18px 36px;
-border-radius:14px;
+gap:12px;
+
+padding:20px 42px;
+
+border-radius:18px;
+
 text-decoration:none;
-font-weight:700;
-color:white;
-background:linear-gradient(135deg,var(--primary),var(--primary2));
+font-weight:800;
+color:#fff;
+
+background:
+linear-gradient(
+135deg,
+var(--primary),
+var(--primary2)
+);
+
+box-shadow:
+0 20px 60px rgba(139,92,246,.30);
+
 transition:.35s;
-box-shadow:0 15px 40px rgba(139,92,246,.22);
+
 }
 
 .btn-primary:hover{
-transform:translateY(-4px) scale(1.03);
-box-shadow:0 25px 60px rgba(139,92,246,.35);
+
+transform:translateY(-5px) scale(1.04);
+
+box-shadow:
+0 35px 80px rgba(139,92,246,.42);
+
 }
 
-/* Grid */
+/* GRID */
 
 .bento-grid{
-max-width:1200px;
-margin:90px auto;
-padding:0 25px;
+
+max-width:1300px;
+margin:100px auto;
+
+padding:0 30px;
+
 display:grid;
 grid-template-columns:repeat(3,1fr);
-gap:22px;
+
+gap:24px;
+
 }
 
-/* Cards */
+/* CARDS */
 
 .bento-box{
-background:rgba(14,14,14,.72);
-backdrop-filter:blur(14px);
+
+background:var(--card);
+
+backdrop-filter:blur(20px);
+
 border:1px solid var(--border);
-border-radius:26px;
-padding:34px;
-transition:.4s;
+
+border-radius:30px;
+
+padding:42px;
+
+transition:.45s;
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+.bento-box::before{
+
+content:'';
+
+position:absolute;
+
+top:-100px;
+right:-100px;
+
+width:220px;
+height:220px;
+
+background:
+radial-gradient(circle,
+rgba(139,92,246,.18),
+transparent 70%);
+
 }
 
 .bento-box:hover{
-transform:translateY(-12px);
-border-color:rgba(139,92,246,.55);
-box-shadow:0 25px 60px rgba(139,92,246,.12);
-}
 
-.bento-tag{
-color:var(--primary);
-font-size:11px;
-font-weight:800;
-letter-spacing:2px;
-text-transform:uppercase;
-margin-bottom:14px;
+transform:translateY(-12px);
+
+border-color:
+rgba(139,92,246,.45);
+
+box-shadow:
+0 30px 80px rgba(139,92,246,.14);
+
 }
 
 .bento-box h4{
-font-size:22px;
-margin-bottom:12px;
+
+font-size:24px;
+margin-bottom:16px;
+
 }
 
 .bento-box p{
+
 font-size:15px;
 color:var(--muted);
-margin:0;
+
 }
 
-/* Responsive */
+/* RESPONSIVE */
 
-@media(max-width:900px){
+@media(max-width:950px){
 
 .hero h1{
-font-size:54px;
+font-size:58px;
 }
 
 .bento-grid{
@@ -196,13 +276,16 @@ grid-template-columns:1fr;
 
 </style>
 </head>
+
 <body>
 
 <div id="cursor-glow"></div>
 
 <header>
 
-<div class="logo">Nexus</div>
+<div class="logo">
+Nexus
+</div>
 
 <a href="https://t.me/k2nt1"
 target="_blank"
@@ -214,13 +297,17 @@ Developer
 
 <section class="hero">
 
-<h1>Nexus All in One.</h1>
+<h1>
+Elite Performance.<br>
+One Platform.
+</h1>
 
 <p>
-Nexus AIO is a premium all-in-one system management suite engineered for professionals. Experience intelligent automation, maximum stability, and elite performance optimization with a single click.
+Nexus AIO delivers intelligent automation, advanced monitoring, and elite-grade optimization engineered for professionals who demand maximum stability and uncompromising performance.
 </p>
 
-<a href="https://github.com/k2nt1/Update/raw/refs/heads/main/NEXUS.exe"
+<a
+href="https://github.com/k2nt1/Update/raw/refs/heads/main/NEXUS.exe"
 class="btn-primary">
 Download Nexus
 </a>
@@ -231,33 +318,30 @@ Download Nexus
 
 <div class="bento-box">
 
-
 <h4>System Monitoring</h4>
 
 <p>
-Advanced real-time diagnostics delivering complete visibility into hardware health, resource utilization, and system efficiency.
+Real-time diagnostics delivering deep visibility into hardware status, thermal metrics, resource usage, and overall system efficiency.
 </p>
 
 </div>
 
 <div class="bento-box">
-
 
 <h4>Performance Optimization</h4>
 
 <p>
-Deep optimization engines designed to eliminate bottlenecks and unlock smooth, responsive performance across every workload.
+Advanced optimization engines designed to remove bottlenecks, boost responsiveness, and unlock smoother workflows.
 </p>
 
 </div>
 
 <div class="bento-box">
 
-
-<h4>System Intelligence</h4>
+<h4>AI Intelligence</h4>
 
 <p>
-AI-driven automation tools that continuously refine responsiveness, improve stability, and maintain peak efficiency.
+Smart automation powered by adaptive system intelligence to continuously improve stability and maintain peak performance.
 </p>
 
 </div>
