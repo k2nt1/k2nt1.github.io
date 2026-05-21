@@ -1,104 +1,277 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Nexus AIO</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Nexus AIO | Elite System Optimizer</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}
-
-body{
-background:#050505;
-color:#fff;
-overflow:hidden;
-display:flex;
-flex-direction:column;
-align-items:center;
-padding:30px;
+:root{
+--bg:#050505;
+--card:rgba(18,18,18,.72);
+--primary:#8b5cf6;
+--primary2:#6d28d9;
+--border:rgba(255,255,255,.06);
+--text:#fff;
+--muted:#8e8e8e;
 }
 
-body:before{
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
+}
+
+body{
+background:var(--bg);
+color:var(--text);
+overflow-x:hidden;
+line-height:1.6;
+}
+
+/* Animated Background */
+
+body::before{
 content:'';
 position:fixed;
 inset:0;
+
 background:
-radial-gradient(circle at 20% 20%,#8b5cf630,transparent 35%),
-radial-gradient(circle at 80% 70%,#6d28d930,transparent 35%);
-z-index:-1;
+radial-gradient(circle at 15% 20%,rgba(139,92,246,.18),transparent 35%),
+radial-gradient(circle at 85% 70%,rgba(109,40,217,.15),transparent 35%);
+
+animation:moveGlow 12s infinite alternate ease-in-out;
+
+z-index:-2;
 }
+
+@keyframes moveGlow{
+from{
+transform:translateY(-30px);
+}
+to{
+transform:translateY(30px);
+}
+}
+
+/* Cursor Glow */
+
+#cursor-glow{
+position:fixed;
+width:650px;
+height:650px;
+background:radial-gradient(circle,rgba(139,92,246,.16),transparent 70%);
+pointer-events:none;
+z-index:-1;
+transform:translate(-50%,-50%);
+}
+
+/* HEADER */
 
 header{
-width:100%;
-max-width:1100px;
+max-width:1300px;
+margin:auto;
+padding:35px 35px;
 display:flex;
 justify-content:space-between;
-margin-bottom:80px;
+align-items:center;
 }
 
-a{
-color:#999;
+.logo{
+font-size:30px;
+font-weight:900;
+letter-spacing:-1px;
+}
+
+.btn-developer{
 text-decoration:none;
-transition:.3s;
+color:var(--muted);
+font-weight:600;
+transition:.35s;
 }
 
-a:hover{color:#8b5cf6}
+.btn-developer:hover{
+color:var(--primary);
+}
+
+/* HERO */
 
 .hero{
+max-width:1100px;
+margin:110px auto;
+padding:0 25px;
 text-align:center;
-max-width:800px;
 }
 
-h1{
-font-size:80px;
+.hero h1{
+
+font-size:92px;
 line-height:.9;
-margin-bottom:25px;
-background:linear-gradient(90deg,#fff,#8b5cf6);
+font-weight:900;
+letter-spacing:-5px;
+
+background:linear-gradient(
+90deg,
+#ffffff,
+#d8b4fe,
+#8b5cf6
+);
+
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
+
+margin-bottom:30px;
 }
 
-p{
-color:#888;
-margin-bottom:40px;
+.hero p{
+
+max-width:760px;
+margin:auto;
+font-size:20px;
+color:var(--muted);
+margin-bottom:50px;
+
 }
 
-.btn{
-display:inline-block;
-padding:16px 35px;
-border-radius:14px;
-background:linear-gradient(135deg,#8b5cf6,#6d28d9);
+/* BUTTON */
+
+.btn-primary{
+
+display:inline-flex;
+align-items:center;
+gap:12px;
+
+padding:20px 42px;
+
+border-radius:18px;
+
+text-decoration:none;
+font-weight:800;
 color:#fff;
-font-weight:700;
+
+background:
+linear-gradient(
+135deg,
+var(--primary),
+var(--primary2)
+);
+
+box-shadow:
+0 20px 60px rgba(139,92,246,.30);
+
+transition:.35s;
+
 }
 
-.grid{
+.btn-primary:hover{
+
+transform:translateY(-5px) scale(1.04);
+
+box-shadow:
+0 35px 80px rgba(139,92,246,.42);
+
+}
+
+/* GRID */
+
+.bento-grid{
+
+max-width:1300px;
+margin:100px auto;
+
+padding:0 30px;
+
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-gap:20px;
-width:100%;
-max-width:1100px;
-margin-top:90px;
+grid-template-columns:repeat(3,1fr);
+
+gap:24px;
+
 }
 
-.box{
-background:#101010cc;
-border:1px solid #1e1e1e;
-padding:28px;
-border-radius:22px;
-transition:.3s;
+/* CARDS */
+
+.bento-box{
+
+background:var(--card);
+
+backdrop-filter:blur(20px);
+
+border:1px solid var(--border);
+
+border-radius:30px;
+
+padding:42px;
+
+transition:.45s;
+
+position:relative;
+
+overflow:hidden;
+
 }
 
-.box:hover{
-transform:translateY(-8px);
-border-color:#8b5cf6;
+.bento-box::before{
+
+content:'';
+
+position:absolute;
+
+top:-100px;
+right:-100px;
+
+width:220px;
+height:220px;
+
+background:
+radial-gradient(circle,
+rgba(139,92,246,.18),
+transparent 70%);
+
 }
 
-.box h3{margin-bottom:12px}
+.bento-box:hover{
 
-@media(max-width:700px){
-h1{font-size:52px}
+transform:translateY(-12px);
+
+border-color:
+rgba(139,92,246,.45);
+
+box-shadow:
+0 30px 80px rgba(139,92,246,.14);
+
+}
+
+.bento-box h4{
+
+font-size:24px;
+margin-bottom:16px;
+
+}
+
+.bento-box p{
+
+font-size:15px;
+color:var(--muted);
+
+}
+
+/* RESPONSIVE */
+
+@media(max-width:950px){
+
+.hero h1{
+font-size:58px;
+}
+
+.bento-grid{
+grid-template-columns:1fr;
+}
+
 }
 
 </style>
@@ -106,41 +279,87 @@ h1{font-size:52px}
 
 <body>
 
+<div id="cursor-glow"></div>
+
 <header>
-<b>Nexus</b>
-<a href="https://t.me/k2nt1">Developer</a>
+
+<div class="logo">
+Nexus
+</div>
+
+<a href="https://t.me/k2nt1"
+target="_blank"
+class="btn-developer">
+Developer
+</a>
+
 </header>
 
 <section class="hero">
-<h1>Nexus All-in-One</h1>
+
+<h1>
+Elite Performance.<br>
+One Platform.
+</h1>
 
 <p>
-Elite optimization, smart automation, and advanced monitoring in one powerful platform.
+Nexus AIO delivers intelligent automation, advanced monitoring, and elite-grade optimization engineered for professionals who demand maximum stability and uncompromising performance.
 </p>
 
-<a class="btn" href="https://github.com/k2nt1/Update/raw/refs/heads/main/NEXUS.exe">
-Download
+<a
+href="https://github.com/k2nt1/Update/raw/refs/heads/main/NEXUS.exe"
+class="btn-primary">
+Download Nexus
 </a>
-</section>
-
-<section class="grid">
-
-<div class="box">
-<h3>Monitoring</h3>
-<p>Real-time hardware & system analytics.</p>
-</div>
-
-<div class="box">
-<h3>Optimization</h3>
-<p>Boost speed and remove bottlenecks.</p>
-</div>
-
-<div class="box">
-<h3>AI Engine</h3>
-<p>Automated stability & performance tuning.</p>
-</div>
 
 </section>
+
+<section class="bento-grid">
+
+<div class="bento-box">
+
+<h4>System Monitoring</h4>
+
+<p>
+Real-time diagnostics delivering deep visibility into hardware status, thermal metrics, resource usage, and overall system efficiency.
+</p>
+
+</div>
+
+<div class="bento-box">
+
+<h4>Performance Optimization</h4>
+
+<p>
+Advanced optimization engines designed to remove bottlenecks, boost responsiveness, and unlock smoother workflows.
+</p>
+
+</div>
+
+<div class="bento-box">
+
+<h4>AI Intelligence</h4>
+
+<p>
+Smart automation powered by adaptive system intelligence to continuously improve stability and maintain peak performance.
+</p>
+
+</div>
+
+</section>
+
+<script>
+
+const glow=document.getElementById('cursor-glow');
+
+document.addEventListener('mousemove',(e)=>{
+
+glow.style.left=e.clientX+'px';
+glow.style.top=e.clientY+'px';
+
+});
+
+</script>
 
 </body>
 </html>
