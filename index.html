@@ -3,431 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEXUS AIO | Advanced Windows & Gaming Optimization</title>
-    <link class="favicon" rel="icon" type="image/png" href="Nexus.png">
+    <title>NEXUS AIO | Elite System Optimizer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-black: #000000;
-            --bg-card: #09070f;
-            --primary-purple: #6d28d9;
-            --accent-glow: #a78bfa;
-            --text-main: #f3f4f6;
-            --text-muted: #9ca3af;
-            --border-line: rgba(255, 255, 255, 0.05);
+            --bg: #030303;
+            --card: #0a0a0a;
+            --primary: #8b5cf6;
+            --text-main: #ffffff;
+            --text-muted: #737373;
+            --border: #1a1a1a;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            scroll-behavior: smooth;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background-color: var(--bg); color: var(--text-main); line-height: 1.6; }
 
-        body {
-            background-color: var(--bg-black);
-            color: var(--text-main);
-            overflow-x: hidden;
-        }
+        header { max-width: 1100px; margin: 0 auto; padding: 30px 20px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-weight: 800; font-size: 20px; letter-spacing: -1px; }
 
-        /* الإضاءة الخلفية للشركات - خافتة وفخمة */
-        .ambient-glow {
-            position: absolute;
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(109, 40, 217, 0.08) 0%, transparent 60%);
-            top: -200px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: -1;
-            pointer-events: none;
-        }
+        .hero { max-width: 800px; margin: 100px auto; text-align: center; padding: 0 20px; }
+        h1 { font-size: 64px; font-weight: 800; margin-bottom: 20px; letter-spacing: -2px; line-height: 1; }
+        p { color: var(--text-muted); font-size: 18px; margin-bottom: 40px; }
 
-        .ambient-glow-bottom {
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(167, 139, 250, 0.05) 0%, transparent 70%);
-            bottom: 0;
-            right: -100px;
-            z-index: -1;
-            pointer-events: none;
+        .btn-primary { 
+            background: linear-gradient(135deg, #8b5cf6, #6d28d9); 
+            color: white; padding: 16px 32px; border-radius: 10px; 
+            text-decoration: none; font-weight: 600; transition: 0.3s;
         }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3); }
 
-        /* الهيدر الاحترافي (Navigation) */
-        header {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 25px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border-line);
+        .bento-grid { 
+            max-width: 1100px; margin: 100px auto; display: grid; 
+            grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 0 20px; 
         }
+        .bento-box { 
+            background: var(--card); border: 1px solid var(--border); 
+            padding: 30px; border-radius: 20px; transition: 0.3s; 
+        }
+        .bento-box:hover { border-color: var(--primary); }
+        .bento-tag { color: var(--primary); font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
+        h4 { margin-bottom: 10px; }
 
-        .logo {
-            font-size: 22px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            background: linear-gradient(to right, #fff, var(--accent-glow));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .nav-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            margin-left: 30px;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: #fff;
-        }
-
-        /* قسم الهيرو (Hero Section) */
-        .hero-section {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 90px 20px 60px;
-            text-align: center;
-        }
-
-        .badge {
-            background: rgba(109, 40, 217, 0.15);
-            border: 1px solid rgba(109, 40, 217, 0.3);
-            color: var(--accent-glow);
-            padding: 6px 16px;
-            border-radius: 100px;
-            font-size: 13px;
-            font-weight: 600;
-            display: inline-block;
-            margin-bottom: 25px;
-            letter-spacing: 0.5px;
-        }
-
-        .hero-section h1 {
-            font-size: clamp(40px, 7vw, 75px);
-            font-weight: 900;
-            line-height: 1.1;
-            letter-spacing: -2px;
-            margin-bottom: 20px;
-            background: linear-gradient(to bottom, #ffffff 40%, #a78bfa 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-section p {
-            font-size: clamp(16px, 2vw, 20px);
-            color: var(--text-muted);
-            max-width: 650px;
-            margin: 0 auto 40px;
-            line-height: 1.6;
-        }
-
-        /* زر التحميل العالمي المستقر في المنتصف */
-        .cta-container {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 15px;
-        }
-
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: #ffffff;
-            color: #000000;
-            padding: 18px 45px;
-            font-size: 16px;
-            font-weight: 700;
-            text-decoration: none;
-            border-radius: 12px;
-            letter-spacing: 0.5px;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(167, 139, 250, 0.3);
-            background: var(--accent-glow);
-            color: #000;
-        }
-
-        .os-support {
-            font-size: 12px;
-            color: #4b5563;
-            font-weight: 500;
-        }
-
-        /* قسم تحسين النظام (System Transformation) */
-        .section-title {
-            text-align: center;
-            margin-top: 100px;
-            margin-bottom: 50px;
-            padding: 0 20px;
-        }
-
-        .section-title h2 {
-            font-size: 32px;
-            font-weight: 800;
-            margin-bottom: 10px;
-            letter-spacing: -1px;
-        }
-
-        .section-title p {
-            color: var(--text-muted);
-            font-size: 16px;
-        }
-
-        .grid-performance {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-        }
-
-        .perf-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-line);
-            padding: 40px 35px;
-            border-radius: 20px;
-            transition: border 0.3s;
-        }
-
-        .perf-card:hover {
-            border-color: rgba(167, 139, 250, 0.2);
-        }
-
-        .perf-card h3 {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 12px;
-            color: #fff;
-        }
-
-        .perf-card p {
-            color: var(--text-muted);
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
-        /* قسم تسهيل الاستخدام (Bento UX Grid) */
-        .bento-container {
-            max-width: 1200px;
-            margin: 60px auto 120px;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-auto-rows: minmax(160px, auto);
-            gap: 20px;
-        }
-
-        .bento-box {
-            background: linear-gradient(180deg, rgba(15, 12, 26, 0.7) 0%, rgba(5, 4, 10, 1) 100%);
-            border: 1px solid var(--border-line);
-            border-radius: 24px;
-            padding: 30px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: all 0.3s ease;
-        }
-
-        .bento-box:hover {
-            border-color: rgba(109, 40, 217, 0.4);
-            transform: scale(1.01);
-        }
-
-        /* صندوق كبير يأخذ مساحتين لتمييز اللوحة الرئيسية */
-        .bento-wide {
-            grid-column: span 2;
-            background: linear-gradient(135deg, rgba(15, 12, 26, 0.9) 0%, rgba(9, 7, 15, 0.4) 100%);
-        }
-
-        .bento-tall {
-            grid-row: span 2;
-            justify-content: flex-start;
-        }
-
-        .bento-tag {
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--accent-glow);
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .bento-box h4 {
-            font-size: 22px;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 10px;
-        }
-
-        .bento-box p {
-            color: var(--text-muted);
-            font-size: 14px;
-            line-height: 1.5;
-        }
-
-        /* قائمة الميزات بداخل الصناديق لتسهيل القراءة */
-        .feature-tag-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 20px;
-        }
-
-        .mini-tag {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            padding: 6px 12px;
-            border-radius: 8px;
-            font-size: 12px;
-            font-weight: 600;
-            color: #e5e7eb;
-        }
-
-        /* فوتر بسيط وراقي */
-        footer {
-            border-top: 1px solid var(--border-line);
-            padding: 40px 20px;
-            text-align: center;
-            font-size: 13px;
-            color: #4b5563;
-        }
-
-        /* متوافق بالكامل مع الهواتف */
-        @media (max-width: 968px) {
-            .grid-performance { grid-template-columns: 1fr; }
-            .bento-container { grid-template-columns: 1fr; }
-            .bento-wide { grid-column: span 1; }
-            .bento-tall { grid-row: span 1; }
-            header { flex-direction: column; gap: 15px; }
-            .nav-links a { margin: 0 10px; }
-        }
+        @media (max-width: 768px) { .bento-grid { grid-template-columns: 1fr; } h1 { font-size: 40px; } }
     </style>
 </head>
 <body>
 
-    <div class="ambient-glow"></div>
-    <div class="ambient-glow-bottom"></div>
-
     <header>
         <div class="logo">NEXUS</div>
-        <nav class="nav-links">
-            <a href="#performance">System Benefits</a>
-            <a href="#features">Architecture</a>
-        </nav>
     </header>
 
-    <section class="hero-section">
-        <div class="badge">VERSION 2026 NOW AVAILABLE</div>
-        <h1>NEXUS AIO</h1>
-        <p>The elite, all-in-one system management utility engineered to eliminate bottlenecks, automate Windows maintenance, and stabilize critical game latency.</p>
-        
-        <div class="cta-container">
-            <a href="https://github.com/k2nt1/Update/raw/refs/heads/main/NEXUS.exe" class="btn-primary">
-                DOWNLOAD NEXUS NOW
-            </a>
-        </div>
-        <div class="os-support">Fully Supported on Windows 10 & 11 | Clean & Secure Verification</div>
+    <section class="hero">
+        <h1>Next-Gen System Control.</h1>
+        <p>Nexus AIO هي أداة إدارة النظام المتكاملة، المصممة للمحترفين. أتمتة كاملة، تحسين استقرار، وأداء فائق بضغطة زر.</p>
+        <a href="#" class="btn-primary">Download Nexus 2026</a>
     </section>
 
-    <section id="performance">
-        <div class="section-title">
-            <h2>Engineered For Peak Performance</h2>
-            <p>How Nexus AIO structurally transforms your operating system stability.</p>
+    <div class="bento-grid">
+        <div class="bento-box">
+            <div class="bento-tag">Module 01</div>
+            <h4>Real-Time Telemetry</h4>
+            <p style="font-size: 14px;">مراقبة حية لاستهلاك المعالج والذاكرة دون التأثير على الأداء.</p>
         </div>
-
-        <div class="grid-performance">
-            <div class="perf-card">
-                <h3>Instant OS Deployment</h3>
-                <p>Automates advanced telemetry removal, blocks forced updates, and cleans system clutter to ensure zero background CPU interference.</p>
-            </div>
-            <div class="perf-card">
-                <h3>120 FPS Optimization</h3>
-                <p>Unlocks restricted hardware rendering limits, stabilizes frame times, and seamlessly fine-tunes emulator graphics engines.</p>
-            </div>
-            <div class="perf-card">
-                <h3>Ironclad Core Control</h3>
-                <p>Provides complete absolute authority over Windows Defender, Firewalls, and DNS routing presets with one single click.</p>
-            </div>
+        <div class="bento-box">
+            <div class="bento-tag">Module 02</div>
+            <h4>GameLoop Expert</h4>
+            <p style="font-size: 14px;">حلول جذرية لمشاكل الأداء في المحاكيات وفتح أقصى إطارات ممكنة.</p>
         </div>
-    </section>
-
-    <section id="features">
-        <div class="section-title">
-            <h2>Designed For Ultimate Simplicity</h2>
-            <p>10 Powerful features categorized into 4 easy, intuitive modules.</p>
+        <div class="bento-box">
+            <div class="bento-tag">Module 03</div>
+            <h4>Windows Toolkit</h4>
+            <p style="font-size: 14px;">تنظيف عميق للملفات المؤقتة وإدارة إعدادات النظام المتقدمة.</p>
         </div>
-
-        <div class="bento-container">
-            <div class="bento-box bento-wide">
-                <div>
-                    <div class="bento-tag">Module 01</div>
-                    <h4>Real-Time Telemetry</h4>
-                    <p>Continuous monitoring of critical system vitals including CPU overhead, GPU load, RAM allocation, and storage thresholds without dropping game frames.</p>
-                </div>
-                <div class="feature-tag-list">
-                    <span class="mini-tag">CPU & GPU Telemetry</span>
-                    <span class="mini-tag">Memory Monitoring</span>
-                    <span class="mini-tag">SSD Life Status</span>
-                </div>
-            </div>
-
-            <div class="bento-box bento-tall">
-                <div>
-                    <div class="bento-tag">Module 02</div>
-                    <h4>GameLoop Specialist</h4>
-                    <p>A specialized sub-suite designed exclusively for competitive emulators. Instantly resolves persistent engine stalls, file corruptions, and unlocks maximum display refresh rates safely.</p>
-                </div>
-                <div class="feature-tag-list" style="margin-top: auto;">
-                    <span class="mini-tag">Fix 98% Stuck</span>
-                    <span class="mini-tag">Repair Engine Files</span>
-                    <span class="mini-tag">PUBG 120 FPS Unlocker</span>
-                    <span class="mini-tag">Push & Copy Paks</span>
-                </div>
-            </div>
-
-            <div class="bento-box">
-                <div>
-                    <div class="bento-tag">Module 03</div>
-                    <h4>Advanced Windows Toolkit</h4>
-                    <p>One-click macros designed to execute aggressive deep cache cleaning, flush DNS, reset active host files, and completely block unwanted background network downloads.</p>
-                </div>
-                <div class="feature-tag-list">
-                    <span class="mini-tag">Smart Cache Cleaner</span>
-                    <span class="mini-tag">Update Blocker</span>
-                    <span class="mini-tag">Reset DNS & Hosts</span>
-                </div>
-            </div>
-
-            <div class="bento-box">
-                <div>
-                    <div class="bento-tag">Module 04</div>
-                    <h4>Security Automation</h4>
-                    <p>Toggle sensitive real-time security layers smoothly when launching resource-heavy applications or competitive tournament environments.</p>
-                </div>
-                <div class="feature-tag-list">
-                    <span class="mini-tag">Defender Control</span>
-                    <span class="mini-tag">Firewall Manager</span>
-                    <span class="mini-tag">.so Library Injector</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        © 2026 NEXUS Project. All Rights Reserved. Engineered and Developed by k2nt1.
-    </footer>
+    </div>
 
 </body>
 </html>
