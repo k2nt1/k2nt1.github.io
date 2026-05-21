@@ -35,7 +35,6 @@
 
         .hero { max-width: 800px; margin: 100px auto; text-align: center; padding: 0 20px; }
         h1 { font-size: 64px; font-weight: 800; margin-bottom: 20px; letter-spacing: -2px; line-height: 1; transition: 0.3s; }
-        h1:hover { color: var(--primary); }
         p { color: var(--text-muted); font-size: 18px; margin-bottom: 40px; }
 
         .btn-primary { 
@@ -55,8 +54,10 @@
             padding: 30px; border-radius: 20px; transition: 0.5s; cursor: default;
         }
         .bento-box:hover { border-color: var(--primary); transform: translateY(-10px); background: #0f0f0f; }
-        
         .bento-tag { color: var(--primary); font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
+        h4 { margin-bottom: 10px; }
+
+        @media (max-width: 768px) { .bento-grid { grid-template-columns: 1fr; } h1 { font-size: 40px; } }
     </style>
 </head>
 <body>
@@ -76,18 +77,18 @@
     <div class="bento-grid">
         <div class="bento-box">
             <div class="bento-tag">Module 01</div>
-            <h4>Real-Time Telemetry</h4>
-            <p style="font-size: 14px;">Live monitoring of CPU and RAM usage without impacting your system performance.</p>
+            <h4>System Monitoring</h4>
+            <p style="font-size: 14px;">Real-time diagnostics of your hardware resources to ensure optimal health and efficiency.</p>
         </div>
         <div class="bento-box">
             <div class="bento-tag">Module 02</div>
-            <h4>GameLoop Expert</h4>
-            <p style="font-size: 14px;">Advanced solutions for emulator performance issues and maximum FPS unlocking.</p>
+            <h4>Performance Optimization</h4>
+            <p style="font-size: 14px;">Comprehensive engine tuning to eliminate system bottlenecks and ensure seamless operation across all applications.</p>
         </div>
         <div class="bento-box">
             <div class="bento-tag">Module 03</div>
-            <h4>Windows Toolkit</h4>
-            <p style="font-size: 14px;">Deep cache cleaning and advanced system preset management.</p>
+            <h4>System Intelligence</h4>
+            <p style="font-size: 14px;">Smart automation tools designed to refine system responsiveness and maintain peak stability effortlessly.</p>
         </div>
     </div>
 
