@@ -1,114 +1,284 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEXUS AIO | Elite System Optimizer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #030303;
-            --card: #0a0a0a;
-            --primary: #8b5cf6;
-            --text-main: #ffffff;
-            --text-muted: #737373;
-            --border: #1a1a1a;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { background-color: var(--bg); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
+<title>Nexus AIO | Elite System Optimizer</title>
 
-        #cursor-glow {
-            position: fixed;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
-            pointer-events: none;
-            z-index: -1;
-            transform: translate(-50%, -50%);
-            transition: opacity 0.3s;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-        header { max-width: 1100px; margin: 0 auto; padding: 30px 20px; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-weight: 800; font-size: 20px; letter-spacing: -1px; }
+<style>
 
-        .btn-developer {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-        .btn-developer:hover {
-            color: var(--primary);
-        }
+:root{
+--bg:#050505;
+--card:#0d0d0d;
+--primary:#8b5cf6;
+--primary2:#6d28d9;
+--border:#181818;
+--text:#ffffff;
+--muted:#8a8a8a;
+}
 
-        .hero { max-width: 800px; margin: 100px auto; text-align: center; padding: 0 20px; }
-        h1 { font-size: 64px; font-weight: 800; margin-bottom: 20px; letter-spacing: -2px; line-height: 1; transition: 0.3s; }
-        p { color: var(--text-muted); font-size: 18px; margin-bottom: 40px; }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
+}
 
-        .btn-primary { 
-            background: linear-gradient(135deg, #8b5cf6, #6d28d9); 
-            color: white; padding: 16px 32px; border-radius: 10px; 
-            text-decoration: none; font-weight: 600; transition: 0.4s;
-            display: inline-block;
-        }
-        .btn-primary:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(139, 92, 246, 0.4); }
+body{
+background:var(--bg);
+color:var(--text);
+overflow-x:hidden;
+line-height:1.6;
+}
 
-        .bento-grid { 
-            max-width: 1100px; margin: 100px auto; display: grid; 
-            grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 0 20px; 
-        }
-        .bento-box { 
-            background: var(--card); border: 1px solid var(--border); 
-            padding: 30px; border-radius: 20px; transition: 0.5s; cursor: default;
-        }
-        .bento-box:hover { border-color: var(--primary); transform: translateY(-10px); background: #0f0f0f; }
-        .bento-tag { color: var(--primary); font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
-        h4 { margin-bottom: 10px; }
+/* Background Glow */
 
-        @media (max-width: 768px) { .bento-grid { grid-template-columns: 1fr; } h1 { font-size: 40px; } }
-    </style>
+body::before{
+content:'';
+position:fixed;
+inset:0;
+background:
+radial-gradient(circle at 20% 20%,rgba(139,92,246,.12),transparent 35%),
+radial-gradient(circle at 80% 60%,rgba(109,40,217,.10),transparent 35%);
+z-index:-2;
+}
+
+/* Cursor Glow */
+
+#cursor-glow{
+position:fixed;
+width:500px;
+height:500px;
+background:radial-gradient(circle,rgba(139,92,246,.18),transparent 70%);
+pointer-events:none;
+z-index:-1;
+transform:translate(-50%,-50%);
+}
+
+/* Header */
+
+header{
+max-width:1200px;
+margin:auto;
+padding:30px 25px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.logo{
+font-size:24px;
+font-weight:900;
+letter-spacing:-1px;
+}
+
+.btn-developer{
+text-decoration:none;
+color:var(--muted);
+font-weight:600;
+transition:.3s;
+}
+
+.btn-developer:hover{
+color:var(--primary);
+}
+
+/* Hero */
+
+.hero{
+max-width:900px;
+margin:90px auto;
+text-align:center;
+padding:0 20px;
+}
+
+.hero h1{
+font-size:78px;
+font-weight:900;
+letter-spacing:-4px;
+line-height:.95;
+margin-bottom:25px;
+}
+
+.hero p{
+color:var(--muted);
+font-size:19px;
+max-width:720px;
+margin:auto;
+margin-bottom:45px;
+}
+
+/* Button */
+
+.btn-primary{
+display:inline-flex;
+align-items:center;
+gap:10px;
+padding:18px 36px;
+border-radius:14px;
+text-decoration:none;
+font-weight:700;
+color:white;
+background:linear-gradient(135deg,var(--primary),var(--primary2));
+transition:.35s;
+box-shadow:0 15px 40px rgba(139,92,246,.22);
+}
+
+.btn-primary:hover{
+transform:translateY(-4px) scale(1.03);
+box-shadow:0 25px 60px rgba(139,92,246,.35);
+}
+
+/* Grid */
+
+.bento-grid{
+max-width:1200px;
+margin:90px auto;
+padding:0 25px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:22px;
+}
+
+/* Cards */
+
+.bento-box{
+background:rgba(14,14,14,.72);
+backdrop-filter:blur(14px);
+border:1px solid var(--border);
+border-radius:26px;
+padding:34px;
+transition:.4s;
+}
+
+.bento-box:hover{
+transform:translateY(-12px);
+border-color:rgba(139,92,246,.55);
+box-shadow:0 25px 60px rgba(139,92,246,.12);
+}
+
+.bento-tag{
+color:var(--primary);
+font-size:11px;
+font-weight:800;
+letter-spacing:2px;
+text-transform:uppercase;
+margin-bottom:14px;
+}
+
+.bento-box h4{
+font-size:22px;
+margin-bottom:12px;
+}
+
+.bento-box p{
+font-size:15px;
+color:var(--muted);
+margin:0;
+}
+
+/* Responsive */
+
+@media(max-width:900px){
+
+.hero h1{
+font-size:54px;
+}
+
+.bento-grid{
+grid-template-columns:1fr;
+}
+
+}
+
+</style>
 </head>
 <body>
 
-    <div id="cursor-glow"></div>
+<div id="cursor-glow"></div>
 
-    <header>
-        <div class="logo">NEXUS</div>
-        <a href="https://t.me/k2nt1" target="_blank" class="btn-developer">Developer</a>
-    </header>
+<header>
 
-    <section class="hero">
-        <h1>Nexus All-in-One.</h1>
-        <p>Nexus AIO is an all-in-one system management utility engineered for professionals. Complete automation, system stability, and peak performance with a single click.</p>
-        <a href="https://github.com/k2nt1/Update/raw/refs/heads/main/NEXUS.exe" class="btn-primary">Download Nexus Now</a>
-    </section>
+<div class="logo">Nexus</div>
 
-    <div class="bento-grid">
-        <div class="bento-box">
-            <div class="bento-tag">Module 01</div>
-            <h4>System Monitoring</h4>
-            <p style="font-size: 14px;">Real-time diagnostics of your hardware resources to ensure optimal health and efficiency.</p>
-        </div>
-        <div class="bento-box">
-            <div class="bento-tag">Module 02</div>
-            <h4>Performance Optimization</h4>
-            <p style="font-size: 14px;">Comprehensive engine tuning to eliminate system bottlenecks and ensure seamless operation across all applications.</p>
-        </div>
-        <div class="bento-box">
-            <div class="bento-tag">Module 03</div>
-            <h4>System Intelligence</h4>
-            <p style="font-size: 14px;">Smart automation tools designed to refine system responsiveness and maintain peak stability effortlessly.</p>
-        </div>
-    </div>
+<a href="https://t.me/k2nt1"
+target="_blank"
+class="btn-developer">
+Developer
+</a>
 
-    <script>
-        const glow = document.getElementById('cursor-glow');
-        document.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
-        });
-    </script>
+</header>
+
+<section class="hero">
+
+<h1>Nexus All in One.</h1>
+
+<p>
+Nexus AIO is a premium all-in-one system management suite engineered for professionals. Experience intelligent automation, maximum stability, and elite performance optimization with a single click.
+</p>
+
+<a href="https://github.com/k2nt1/Update/raw/refs/heads/main/NEXUS.exe"
+class="btn-primary">
+Download Nexus
+</a>
+
+</section>
+
+<section class="bento-grid">
+
+<div class="bento-box">
+
+<div class="bento-tag">Module 01</div>
+
+<h4>System Monitoring</h4>
+
+<p>
+Advanced real-time diagnostics delivering complete visibility into hardware health, resource utilization, and system efficiency.
+</p>
+
+</div>
+
+<div class="bento-box">
+
+<div class="bento-tag">Module 02</div>
+
+<h4>Performance Optimization</h4>
+
+<p>
+Deep optimization engines designed to eliminate bottlenecks and unlock smooth, responsive performance across every workload.
+</p>
+
+</div>
+
+<div class="bento-box">
+
+<div class="bento-tag">Module 03</div>
+
+<h4>System Intelligence</h4>
+
+<p>
+AI-driven automation tools that continuously refine responsiveness, improve stability, and maintain peak efficiency.
+</p>
+
+</div>
+
+</section>
+
+<script>
+
+const glow=document.getElementById('cursor-glow');
+
+document.addEventListener('mousemove',(e)=>{
+
+glow.style.left=e.clientX+'px';
+glow.style.top=e.clientY+'px';
+
+});
+
+</script>
+
 </body>
 </html>
