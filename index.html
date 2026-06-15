@@ -3,548 +3,431 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexus Loop | Premium Gaming Suite</title>
+    <title>NEXUS AIO | Advanced Windows & Gaming Optimization</title>
+    <link class="favicon" rel="icon" type="image/png" href="Nexus.png">
     <style>
-        /* نظام الألوان الأساسي - احترافي ومريح للعين */
         :root {
-            --bg-pure-black: #000000;
-            --card-dark: #0a0b10;
-            --inner-panel: #11121a;
-            --border-color: #1f202c;
-            --border-hover: #2e3044;
-            --accent-purple: #8a2be2;
-            --accent-purple-glow: rgba(138, 43, 226, 0.3);
-            --text-white: #ffffff;
-            --text-gray: #8d939e;
+            --bg-black: #000000;
+            --bg-card: #09070f;
+            --primary-purple: #6d28d9;
+            --accent-glow: #a78bfa;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border-line: rgba(255, 255, 255, 0.05);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--bg-pure-black);
-            color: var(--text-white);
+            background-color: var(--bg-black);
+            color: var(--text-main);
             overflow-x: hidden;
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
         }
 
-        .container {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 0 30px;
+        /* الإضاءة الخلفية للشركات - خافتة وفخمة */
+        .ambient-glow {
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(109, 40, 217, 0.08) 0%, transparent 60%);
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: -1;
+            pointer-events: none;
         }
 
-        /* شريط علوي ضخم وفخم (Premium Header) */
+        .ambient-glow-bottom {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(167, 139, 250, 0.05) 0%, transparent 70%);
+            bottom: 0;
+            right: -100px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* الهيدر الاحترافي (Navigation) */
         header {
-            padding: 50px 0;
-            margin-bottom: 40px;
-        }
-
-        header .header-flex {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 25px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid var(--border-line);
         }
 
-        header .brand-logo {
-            font-size: 32px;
-            font-weight: 900;
-            letter-spacing: -1px;
-            background: linear-gradient(135deg, #ffffff 30%, var(--accent-purple) 100%);
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            background: linear-gradient(to right, #fff, var(--accent-glow));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        header .navigation-links {
-            display: flex;
-            gap: 40px;
-        }
-
-        header .nav-item {
-            color: var(--text-gray);
+        .nav-links a {
+            color: var(--text-muted);
             text-decoration: none;
-            font-size: 15px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            transition: color 0.2s, transform 0.2s;
-        }
-
-        header .nav-item:hover {
-            color: var(--text-white);
-            transform: translateY(-1px);
-        }
-
-        /* عنوان الصفحة الرئيسي (Hero Badge) */
-        .page-headline {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .page-headline h1 {
-            font-size: 42px;
-            font-weight: 800;
-            letter-spacing: -1px;
-            margin-bottom: 15px;
-        }
-
-        .page-headline p {
-            color: var(--text-gray);
-            font-size: 16px;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        /* الشبكة الرئيسية للمنتجات (Grid Layout) */
-        .main-showcase {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 35px;
-            margin-bottom: 80px;
-        }
-
-        /* الكروت الذكية (Smart Cards) */
-        .product-card {
-            background-color: var(--card-dark);
-            border: 1px solid var(--border-color);
-            border-radius: 24px;
-            padding: 45px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
-
-        .product-card:hover {
-            border-color: var(--border-hover);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-        }
-
-        .badge-sub {
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            color: var(--text-gray);
-            text-transform: uppercase;
-            margin-bottom: 8px;
-        }
-
-        .product-title {
-            font-size: 36px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            margin-bottom: 35px;
-        }
-
-        .product-title span {
-            color: var(--accent-purple);
-        }
-
-        /* لوحات تسعير مبسطة وسريعة القراءة */
-        .pricing-tier-wrapper {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 40px;
-        }
-
-        .price-badge-block {
-            flex: 1;
-            background-color: var(--inner-panel);
-            border: 1px solid var(--border-color);
-            border-radius: 14px;
-            padding: 18px;
-            text-align: center;
-        }
-
-        .price-badge-block .time-label {
-            font-size: 13px;
-            color: var(--text-gray);
-            font-weight: 500;
-            margin-bottom: 5px;
-        }
-
-        .price-badge-block .cost-val {
-            font-size: 26px;
-            font-weight: 800;
-        }
-
-        /* مميزات واضحة ومقروءة (Clean Typography Features) */
-        .features-wrapper {
-            margin-bottom: 20px;
-            flex-grow: 1;
-        }
-
-        .feature-item-row {
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .feature-item-row .indicator-dot {
-            width: 6px;
-            height: 6px;
-            background-color: var(--accent-purple);
-            border-radius: 50%;
-            margin-top: 8px;
-            flex-shrink: 0;
-            box-shadow: 0 0 8px var(--accent-purple);
-        }
-
-        .feature-item-row .feature-text-block {
             font-size: 14px;
-            color: #bcbfc6;
+            font-weight: 500;
+            margin-left: 30px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        /* قسم الهيرو (Hero Section) */
+        .hero-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 90px 20px 60px;
+            text-align: center;
+        }
+
+        .badge {
+            background: rgba(109, 40, 217, 0.15);
+            border: 1px solid rgba(109, 40, 217, 0.3);
+            color: var(--accent-glow);
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 25px;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-section h1 {
+            font-size: clamp(40px, 7vw, 75px);
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            margin-bottom: 20px;
+            background: linear-gradient(to bottom, #ffffff 40%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-section p {
+            font-size: clamp(16px, 2vw, 20px);
+            color: var(--text-muted);
+            max-width: 650px;
+            margin: 0 auto 40px;
             line-height: 1.6;
         }
 
-        .feature-item-row .feature-text-block strong {
-            color: var(--text-white);
-            font-weight: 600;
-            display: block;
-            margin-bottom: 2px;
-            font-size: 15px;
-        }
-
-        /* سكشن الموزعين بحلة جديدة (Wholesale Dashboard Minimalist) */
-        .reseller-dashboard {
-            border-top: 1px solid var(--border-color);
-            padding: 80px 0;
-        }
-
-        .reseller-dashboard-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .reseller-dashboard-title h2 {
-            font-size: 32px;
-            font-weight: 800;
-            margin-bottom: 10px;
-        }
-
-        .reseller-dashboard-title p {
-            color: var(--text-gray);
-            font-size: 15px;
-        }
-
-        .reseller-flex-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-            gap: 30px;
-        }
-
-        .reseller-block-card {
-            background-color: var(--card-dark);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 35px;
-        }
-
-        .reseller-block-card h3 {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 25px;
-            color: var(--text-white);
-            letter-spacing: -0.2px;
-        }
-
-        .bundle-strip-row {
-            background-color: var(--inner-panel);
-            border: 1px solid var(--border-color);
-            border-radius: 14px;
-            padding: 18px 24px;
-            margin-bottom: 12px;
+        /* زر التحميل العالمي المستقر في المنتصف */
+        .cta-container {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
         }
 
-        .bundle-strip-row:last-child {
-            margin-bottom: 0;
-        }
-
-        .bundle-desc-side {
-            font-size: 14px;
-            color: #bcbfc6;
-            font-weight: 500;
-        }
-
-        .bundle-price-side {
-            font-size: 24px;
-            font-weight: 900;
-            color: var(--text-white);
-        }
-
-        /* منطقة الدعم والروابط (Conversion Hub) */
-        .gateway-footer {
-            padding: 60px 0 100px 0;
-            text-align: center;
-        }
-
-        .action-card-center {
-            background: radial-gradient(circle at top, #12131c 0%, var(--card-dark) 100%);
-            border: 1px solid var(--border-color);
-            border-radius: 24px;
-            padding: 50px;
-            max-width: 650px;
-            margin: 0 auto;
-        }
-
-        .action-card-center h3 {
-            font-size: 24px;
-            font-weight: 800;
-            margin-bottom: 8px;
-        }
-
-        .action-card-center p {
-            color: var(--text-gray);
-            font-size: 15px;
-            margin-bottom: 30px;
-        }
-
-        .button-group-flex {
-            display: flex;
-            gap: 20px;
-        }
-
-        .interactive-cta-btn {
-            flex: 1;
+        .btn-primary {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 16px 30px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-size: 15px;
+            background: #ffffff;
+            color: #000000;
+            padding: 18px 45px;
+            font-size: 16px;
             font-weight: 700;
-            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            border-radius: 12px;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
         }
 
-        .interactive-cta-btn.discord-theme {
-            background-color: #5865F2;
-            color: var(--text-white);
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(167, 139, 250, 0.3);
+            background: var(--accent-glow);
+            color: #000;
         }
 
-        .interactive-cta-btn.telegram-theme {
-            background-color: #0088cc;
-            color: var(--text-white);
+        .os-support {
+            font-size: 12px;
+            color: #4b5563;
+            font-weight: 500;
         }
 
-        .interactive-cta-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+        /* قسم تحسين النظام (System Transformation) */
+        .section-title {
+            text-align: center;
+            margin-top: 100px;
+            margin-bottom: 50px;
+            padding: 0 20px;
         }
 
-        @media (max-width: 768px) {
-            header { padding: 30px 0; }
-            .main-showcase, .reseller-flex-grid { grid-template-columns: 1fr; }
-            .button-group-flex { flex-direction: column; }
-            .pricing-tier-wrapper { flex-direction: column; }
-            .action-card-center { padding: 30px; }
+        .section-title h2 {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .section-title p {
+            color: var(--text-muted);
+            font-size: 16px;
+        }
+
+        .grid-performance {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .perf-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-line);
+            padding: 40px 35px;
+            border-radius: 20px;
+            transition: border 0.3s;
+        }
+
+        .perf-card:hover {
+            border-color: rgba(167, 139, 250, 0.2);
+        }
+
+        .perf-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+
+        .perf-card p {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* قسم تسهيل الاستخدام (Bento UX Grid) */
+        .bento-container {
+            max-width: 1200px;
+            margin: 60px auto 120px;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: minmax(160px, auto);
+            gap: 20px;
+        }
+
+        .bento-box {
+            background: linear-gradient(180deg, rgba(15, 12, 26, 0.7) 0%, rgba(5, 4, 10, 1) 100%);
+            border: 1px solid var(--border-line);
+            border-radius: 24px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+        }
+
+        .bento-box:hover {
+            border-color: rgba(109, 40, 217, 0.4);
+            transform: scale(1.01);
+        }
+
+        /* صندوق كبير يأخذ مساحتين لتمييز اللوحة الرئيسية */
+        .bento-wide {
+            grid-column: span 2;
+            background: linear-gradient(135deg, rgba(15, 12, 26, 0.9) 0%, rgba(9, 7, 15, 0.4) 100%);
+        }
+
+        .bento-tall {
+            grid-row: span 2;
+            justify-content: flex-start;
+        }
+
+        .bento-tag {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent-glow);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .bento-box h4 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .bento-box p {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* قائمة الميزات بداخل الصناديق لتسهيل القراءة */
+        .feature-tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .mini-tag {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #e5e7eb;
+        }
+
+        /* فوتر بسيط وراقي */
+        footer {
+            border-top: 1px solid var(--border-line);
+            padding: 40px 20px;
+            text-align: center;
+            font-size: 13px;
+            color: #4b5563;
+        }
+
+        /* متوافق بالكامل مع الهواتف */
+        @media (max-width: 968px) {
+            .grid-performance { grid-template-columns: 1fr; }
+            .bento-container { grid-template-columns: 1fr; }
+            .bento-wide { grid-column: span 1; }
+            .bento-tall { grid-row: span 1; }
+            header { flex-direction: column; gap: 15px; }
+            .nav-links a { margin: 0 10px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- الهيدر الأكبر والأكثر فخامة -->
-    <header class="container">
-        <div class="header-flex">
-            <div class="brand-logo">Nexus Loop</div>
-            <div class="navigation-links">
-                <a href="https://discord.gg/2GcgXfpnG7" target="_blank" class="nav-item">Discord</a>
-                <a href="https://t.me/k2nt1" target="_blank" class="nav-item">Telegram</a>
-            </div>
-        </div>
+    <div class="ambient-glow"></div>
+    <div class="ambient-glow-bottom"></div>
+
+    <header>
+        <div class="logo">NEXUS</div>
+        <nav class="nav-links">
+            <a href="#performance">System Benefits</a>
+            <a href="#features">Architecture</a>
+        </nav>
     </header>
 
-    <main class="container">
-
-        <div class="page-headline">
-            <h1>Premium Access Tiers</h1>
-            <p>Simple pricing layout with completely clear feature breakdowns.</p>
-        </div>
+    <section class="hero-section">
+        <div class="badge">VERSION 2026 NOW AVAILABLE</div>
+        <h1>NEXUS AIO</h1>
+        <p>The elite, all-in-one system management utility engineered to eliminate bottlenecks, automate Windows maintenance, and stabilize critical game latency.</p>
         
-        <!-- سكشن خطط الاشتراكات بتنظيم الكروت وعرض احترافي مريح -->
-        <section class="main-showcase">
-            
-            <!-- Full Key Premium Card -->
-            <div class="product-card">
-                <div>
-                    <div class="badge-sub">TIER 01</div>
-                    <div class="product-title">Full <span>Key</span></div>
-                    
-                    <div class="pricing-tier-wrapper">
-                        <div class="price-badge-block">
-                            <div class="time-label">Weekly</div>
-                            <div class="cost-val">$10</div>
-                        </div>
-                        <div class="price-badge-block">
-                            <div class="time-label">Monthly</div>
-                            <div class="cost-val">$30</div>
-                        </div>
-                    </div>
+        <div class="cta-container">
+            <a href="https://github.com/k2nt1/Update/raw/refs/heads/main/NEXUS.exe" class="btn-primary">
+                DOWNLOAD NEXUS NOW
+            </a>
+        </div>
+        <div class="os-support">Fully Supported on Windows 10 & 11 | Clean & Secure Verification</div>
+    </section>
 
-                    <div class="features-wrapper">
-                        <div class="feature-item-row">
-                            <div class="indicator-dot"></div>
-                            <div class="feature-text-block">
-                                <strong>Visual Setup</strong>
-                                Visual + Mod Skins + VCheck + Fake Damage Fix
-                            </div>
-                        </div>
-                        <div class="feature-item-row">
-                            <div class="indicator-dot"></div>
-                            <div class="feature-text-block">
-                                <strong>Aim Support</strong>
-                                Silent Aim | Aim Assist | Mouse Event | Macro
-                            </div>
-                        </div>
-                        <div class="feature-item-row">
-                            <div class="indicator-dot"></div>
-                            <div class="feature-text-block">
-                                <strong>Memory Performance</strong>
-                                IHBox | Fast Run | Less Recoil | Small Crosshair | Fast/Fly Car
-                            </div>
-                        </div>
-                        <div class="feature-item-row">
-                            <div class="indicator-dot"></div>
-                            <div class="feature-text-block">
-                                <strong>Utility Extras</strong>
-                                X Effect | Show Damage | Force TPP | Fast/Auto Parachute | Danger Mode
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <section id="performance">
+        <div class="section-title">
+            <h2>Engineered For Peak Performance</h2>
+            <p>How Nexus AIO structurally transforms your operating system stability.</p>
+        </div>
+
+        <div class="grid-performance">
+            <div class="perf-card">
+                <h3>Instant OS Deployment</h3>
+                <p>Automates advanced telemetry removal, blocks forced updates, and cleans system clutter to ensure zero background CPU interference.</p>
             </div>
-
-            <!-- Rank Key Premium Card -->
-            <div class="product-card">
-                <div>
-                    <div class="badge-sub">TIER 02</div>
-                    <div class="product-title">Rank <span>Key</span></div>
-                    
-                    <div class="pricing-tier-wrapper">
-                        <div class="price-badge-block">
-                            <div class="time-label">Weekly</div>
-                            <div class="cost-val">$8</div>
-                        </div>
-                        <div class="price-badge-block">
-                            <div class="time-label">Monthly</div>
-                            <div class="cost-val">$20</div>
-                        </div>
-                    </div>
-
-                    <div class="features-wrapper">
-                        <div class="feature-item-row">
-                            <div class="indicator-dot"></div>
-                            <div class="feature-text-block">
-                                <strong>Included System Features</strong>
-                                Visual + Aim Assist + Mouse Event + Macro + Mod Skins + VCheck
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="perf-card">
+                <h3>120 FPS Optimization</h3>
+                <p>Unlocks restricted hardware rendering limits, stabilizes frame times, and seamlessly fine-tunes emulator graphics engines.</p>
             </div>
-
-            <!-- Light Key Premium Card -->
-            <div class="product-card">
-                <div>
-                    <div class="badge-sub">TIER 03</div>
-                    <div class="product-title">Light <span>Key</span></div>
-                    
-                    <div class="pricing-tier-wrapper">
-                        <div class="price-badge-block">
-                            <div class="time-label">Weekly</div>
-                            <div class="cost-val">$5</div>
-                        </div>
-                        <div class="price-badge-block">
-                            <div class="time-label">Monthly</div>
-                            <div class="cost-val">$15</div>
-                        </div>
-                    </div>
-
-                    <div class="features-wrapper">
-                        <div class="feature-item-row">
-                            <div class="indicator-dot"></div>
-                            <div class="feature-text-block">
-                                <strong>Core System Essential</strong>
-                                Visual + Aim Assist
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </section>
-
-        <!-- لوحة الموزعين وعروض الكميات المطور والمبسط بالكامل -->
-        <section class="reseller-dashboard">
-            <div class="reseller-dashboard-title">
-                <h2>Bulk / Reseller Packages</h2>
-                <p>Wholesale keys calculated for community owners and distributors.</p>
-            </div>
-            
-            <div class="reseller-flex-grid">
-                
-                <!-- Full Key Box -->
-                <div class="reseller-block-card">
-                    <h3>Full Key Packages</h3>
-                    <div class="bundle-strip-row">
-                        <div class="bundle-desc-side">15 Month Keys + 10 Gift Week Keys</div>
-                        <div class="bundle-price-side">100$</div>
-                    </div>
-                    <div class="bundle-strip-row">
-                        <div class="bundle-desc-side">10 Month Keys + 10 Gift Week Keys</div>
-                        <div class="bundle-price-side">80$</div>
-                    </div>
-                </div>
-
-                <!-- Rank Key Box -->
-                <div class="reseller-block-card">
-                    <h3>Rank Key Packages</h3>
-                    <div class="bundle-strip-row">
-                        <div class="bundle-desc-side">15 Month Keys + 10 Gift Week Keys</div>
-                        <div class="bundle-price-side">80$</div>
-                    </div>
-                    <div class="bundle-strip-row">
-                        <div class="bundle-desc-side">10 Month Keys + 10 Gift Week Keys</div>
-                        <div class="bundle-price-side">65$</div>
-                    </div>
-                </div>
-
-                <!-- Light Key Box -->
-                <div class="reseller-block-card">
-                    <h3>Light Key Packages</h3>
-                    <div class="bundle-strip-row">
-                        <div class="bundle-desc-side">15 Month Keys + 10 Gift Week Keys</div>
-                        <div class="bundle-price-side">65$</div>
-                    </div>
-                    <div class="bundle-strip-row">
-                        <div class="bundle-desc-side">10 Month Keys + 10 Gift Week Keys</div>
-                        <div class="bundle-price-side">50$</div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-    </main>
-
-    <!-- الفوتر المحسن بالكامل لتحويل العميل لأزرار تواصل مباشرة -->
-    <section class="gateway-footer container">
-        <div class="action-card-center">
-            <h3>Connect Instantly</h3>
-            <p>Ready to acquire your license? Join our platforms below for active full delivery.</p>
-            <div class="button-group-flex">
-                <a href="https://discord.gg/2GcgXfpnG7" target="_blank" class="interactive-cta-btn discord-theme">Open Discord Community</a>
-                <a href="https://t.me/k2nt1" target="_blank" class="interactive-cta-btn telegram-theme">Telegram Channel</a>
+            <div class="perf-card">
+                <h3>Ironclad Core Control</h3>
+                <p>Provides complete absolute authority over Windows Defender, Firewalls, and DNS routing presets with one single click.</p>
             </div>
         </div>
     </section>
+
+    <section id="features">
+        <div class="section-title">
+            <h2>Designed For Ultimate Simplicity</h2>
+            <p>10 Powerful features categorized into 4 easy, intuitive modules.</p>
+        </div>
+
+        <div class="bento-container">
+            <div class="bento-box bento-wide">
+                <div>
+                    <div class="bento-tag">Module 01</div>
+                    <h4>Real-Time Telemetry</h4>
+                    <p>Continuous monitoring of critical system vitals including CPU overhead, GPU load, RAM allocation, and storage thresholds without dropping game frames.</p>
+                </div>
+                <div class="feature-tag-list">
+                    <span class="mini-tag">CPU & GPU Telemetry</span>
+                    <span class="mini-tag">Memory Monitoring</span>
+                    <span class="mini-tag">SSD Life Status</span>
+                </div>
+            </div>
+
+            <div class="bento-box bento-tall">
+                <div>
+                    <div class="bento-tag">Module 02</div>
+                    <h4>GameLoop Specialist</h4>
+                    <p>A specialized sub-suite designed exclusively for competitive emulators. Instantly resolves persistent engine stalls, file corruptions, and unlocks maximum display refresh rates safely.</p>
+                </div>
+                <div class="feature-tag-list" style="margin-top: auto;">
+                    <span class="mini-tag">Fix 98% Stuck</span>
+                    <span class="mini-tag">Repair Engine Files</span>
+                    <span class="mini-tag">PUBG 120 FPS Unlocker</span>
+                    <span class="mini-tag">Push & Copy Paks</span>
+                </div>
+            </div>
+
+            <div class="bento-box">
+                <div>
+                    <div class="bento-tag">Module 03</div>
+                    <h4>Advanced Windows Toolkit</h4>
+                    <p>One-click macros designed to execute aggressive deep cache cleaning, flush DNS, reset active host files, and completely block unwanted background network downloads.</p>
+                </div>
+                <div class="feature-tag-list">
+                    <span class="mini-tag">Smart Cache Cleaner</span>
+                    <span class="mini-tag">Update Blocker</span>
+                    <span class="mini-tag">Reset DNS & Hosts</span>
+                </div>
+            </div>
+
+            <div class="bento-box">
+                <div>
+                    <div class="bento-tag">Module 04</div>
+                    <h4>Security Automation</h4>
+                    <p>Toggle sensitive real-time security layers smoothly when launching resource-heavy applications or competitive tournament environments.</p>
+                </div>
+                <div class="feature-tag-list">
+                    <span class="mini-tag">Defender Control</span>
+                    <span class="mini-tag">Firewall Manager</span>
+                    <span class="mini-tag">DLL Library Injector</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        © 2026 NEXUS Project. All Rights Reserved. Engineered and Developed by k2nt1.
+    </footer>
 
 </body>
 </html>
