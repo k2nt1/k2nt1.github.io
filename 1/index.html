@@ -194,7 +194,7 @@
         /* ── Downloads grid ── */
         .downloads-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 18px;
             margin-bottom: 40px;
         }
@@ -373,12 +373,7 @@
 
         /* ── Responsive ── */
         @media (max-width: 820px) {
-            .downloads-grid { grid-template-columns: 1fr; }
             .cta-btns { flex-direction: column; }
-        }
-
-        @media (min-width: 540px) and (max-width: 820px) {
-            .downloads-grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
@@ -420,7 +415,7 @@
                     <div class="file-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
                     </div>
-                    <div class="file-name">CoreInit.exe</div>
+                    <div class="file-name">CoreInit</div>
                     <span class="file-type">Executable</span>
                     <p class="file-desc">The core initializer. Required to set up and launch the loader correctly.</p>
                     <a href="https://k2nt1.alwaysdata.net/Download/CoreInit.exe" download class="btn-download">
@@ -434,23 +429,29 @@
                     <div class="file-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
                     </div>
-                    <div class="file-name">Nexus Loop.exe</div>
+                    <div class="file-name">Nexus Loop</div>
                     <span class="file-type">Launcher</span>
-                    <p class="file-desc">The main launcher. Run this file after the other two are downloaded to start Nexus Loop.</p>
+                    <p class="file-desc">One-click activation launches everything automatically. Just run it and you're in, no setup needed.</p>
                     <a href="https://k2nt1.alwaysdata.net/Download/Nexus%20Loop.exe" download class="btn-download">
                         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                         Download
                     </a>
                 </div>
 
-            </div>
+                <!-- loader.exe -->
+                <div class="download-card">
+                    <div class="file-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                    </div>
+                    <div class="file-name">loader</div>
+                    <span class="file-type">Updater</span>
+                    <p class="file-desc">Advanced feature engine. Unlocks extra controls like Reset Guest, DeleteID, Ultra HDR, and 120 fps.</p>
+                    <a href="ftp://k2nt1@ftp-k2nt1.alwaysdata.net/www/Update/loader.exe" download class="btn-download">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        Download
+                    </a>
+                </div>
 
-            <!-- Download all -->
-            <div class="download-all-row">
-                <button id="download-all" class="btn-download-all">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                    Download All Files
-                </button>
             </div>
 
         </div>
@@ -561,26 +562,6 @@
         init();
         loop();
 
-        // Download all files sequentially
-        var files = [
-            'https://k2nt1.alwaysdata.net/Download/CoreInit.exe',
-            'https://k2nt1.alwaysdata.net/Download/Main.dat',
-            'https://k2nt1.alwaysdata.net/Download/Nexus%20Loop.exe'
-        ];
-
-        var btn = document.getElementById('download-all');
-        btn.addEventListener('click', function () {
-            files.forEach(function (url, i) {
-                setTimeout(function () {
-                    var a = document.createElement('a');
-                    a.href = url;
-                    a.download = '';
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-                }, i * 800);
-            });
-        });
     })();
     </script>
 
