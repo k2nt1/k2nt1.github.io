@@ -371,136 +371,20 @@
         .cta-btn-telegram { background: #0088cc; color: #fff; }
         .cta-btn-telegram:hover { box-shadow: 0 6px 20px rgba(0,136,204,0.35); }
 
-        /* ── License Gate ── */
-        #license-gate {
-            position: fixed;
-            inset: 0;
-            z-index: 200;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--bg-dark);
-        }
-
-        .gate-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 44px 36px 38px;
-            width: 100%;
-            max-width: 400px;
-            text-align: center;
-            box-shadow: 0 0 40px rgba(138,43,226,0.08);
-        }
-
-        .gate-logo {
-            font-size: 22px;
-            font-weight: 800;
-            letter-spacing: -0.3px;
-            margin-bottom: 8px;
-        }
-
-        .gate-logo span { color: var(--accent-light); }
-
-        .gate-sub {
-            font-size: 13px;
-            color: var(--text-sub);
-            margin-bottom: 28px;
-        }
-
-        .gate-input-wrap {
-            position: relative;
-            margin-bottom: 14px;
-        }
-
-        .gate-input {
-            width: 100%;
-            padding: 13px 16px;
-            border-radius: 10px;
-            border: 1px solid var(--border-hover);
-            background: var(--bg-dark);
-            color: var(--text-white);
-            font-family: inherit;
-            font-size: 14px;
-            font-weight: 500;
-            outline: none;
-            transition: border-color 0.2s, box-shadow 0.2s;
-        }
-
-        .gate-input:focus {
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px var(--accent-glow);
-        }
-
-        .gate-input::placeholder { color: var(--text-muted); }
-
-        .gate-error {
-            color: #ff6b6b;
-            font-size: 12px;
-            font-weight: 600;
-            min-height: 18px;
-            margin-bottom: 10px;
-        }
-
-        .gate-btn {
-            width: 100%;
-            padding: 13px;
-            border-radius: 10px;
-            border: none;
-            background: var(--accent);
-            color: #fff;
-            font-family: inherit;
-            font-size: 14px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
-        }
-
-        .gate-btn:hover {
-            background: var(--accent-light);
-            box-shadow: 0 4px 18px var(--accent-glow);
-            transform: translateY(-1px);
-        }
-
-        .gate-btn:active { transform: translateY(0); }
-
-        .hidden-content {
-            display: none;
-        }
-
-        .show-content {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
         /* ── Responsive ── */
         @media (max-width: 820px) {
             .cta-btns { flex-direction: column; }
-            .gate-card { margin: 0 18px; padding: 32px 24px 28px; }
         }
     </style>
+    <script>
+    (function(){
+        if (sessionStorage.getItem("nexus_loop_lic") !== "1") {
+            window.location.replace("license.html");
+        }
+    })();
+    </script>
 </head>
 <body>
-
-    <!-- License Gate -->
-    <div id="license-gate">
-        <div class="gate-card">
-            <div class="gate-logo">Nexus <span>Loop</span></div>
-            <div class="gate-sub">Enter your license key to access downloads</div>
-            <div class="gate-input-wrap">
-                <input type="text" id="license-input" class="gate-input" placeholder="XXXX-XXXX-XXXX-XXXX" autocomplete="off" spellcheck="false">
-            </div>
-            <div class="gate-error" id="license-error"></div>
-            <button class="gate-btn" id="license-submit">Access Downloads</button>
-        </div>
-    </div>
-
-    <div id="main-content" class="hidden-content">
 
     <canvas id="particle-canvas"></canvas>
 
@@ -579,88 +463,6 @@
 
         </div>
     </main>
-
-    </div><!-- /#main-content -->
-
-    <script>
-    (function() {
-        // ===== CONFIG =====
-        // Add your valid license keys here. You can also use hashed keys for basic obfuscation.
-        var VALID_KEYS = [
-            "NEXUS-LOOP-2024-VIP",
-            "K2NT1-ALPHA-KEY-001",
-            "K2NT1-BETA-KEY-002"
-        ];
-
-        var KEYAUTH_NAME     = "NEXUS";
-        var KEYAUTH_OWNERID  = "hdUlov6Z0E";
-        var KEYAUTH_VERSION  = "2.3";
-        var KEYAUTH_URL      = "https://keyauth.win/api/1.3/";
-
-        var SESSION_KEY = "nexus_loop_lic";
-
-        var gate        = document.getElementById("license-gate");
-        var main        = document.getElementById("main-content");
-        var input       = document.getElementById("license-input");
-        var submitBtn   = document.getElementById("license-submit");
-        var errorBox    = document.getElementById("license-error");
-
-        function showError(msg) {
-            errorBox.textContent = msg;
-        }
-
-        function unlock() {
-            gate.style.display = "none";
-            main.classList.remove("hidden-content");
-            main.classList.add("show-content");
-            sessionStorage.setItem(SESSION_KEY, "1");
-        }
-
-        function isUnlocked() {
-            return sessionStorage.getItem(SESSION_KEY) === "1";
-        }
-
-        function normalizeKey(key) {
-            return key.replace(/\s+/g, "").toUpperCase();
-        }
-
-        function validateKey(key) {
-            var norm = normalizeKey(key);
-            for (var i = 0; i < VALID_KEYS.length; i++) {
-                if (normalizeKey(VALID_KEYS[i]) === norm) {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        function tryKey() {
-            var key = input.value.trim();
-            if (!key) {
-                showError("Please enter a license key.");
-                return;
-            }
-            if (validateKey(key)) {
-                showError("");
-                unlock();
-            } else {
-                showError("Invalid license key. Please try again.");
-                input.value = "";
-                input.focus();
-            }
-        }
-
-        submitBtn.addEventListener("click", tryKey);
-        input.addEventListener("keydown", function(e) {
-            if (e.key === "Enter") tryKey();
-        });
-
-        // Auto-unlock if already verified this session
-        if (isUnlocked()) {
-            unlock();
-        }
-    })();
-    </script>
 
     <script>
     (function () {
