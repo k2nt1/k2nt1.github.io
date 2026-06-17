@@ -50,7 +50,7 @@ var x=i.value.trim();
 if(!x){er.textContent="Please enter a license key.";return}
 busy=true;er.textContent="Verifying...";b.style.opacity="0.7";b.style.pointerEvents="none";
 
-fetch("verify.php",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({key:x})})
+fetch("https://k2nt1.alwaysdata.net/Loop/Download/verify.php",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({key:x})})
 .then(function(r){return r.json()})
 .then(function(d){
 if(d&&d.success){ok();}else{fail(d&&d.message?d.message:"KeyAuth rejected the key.");}
