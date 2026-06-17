@@ -36,14 +36,12 @@ body{background:var(--bg);color:var(--w);font-family:'Inter',system-ui,sans-seri
 
 <script>
 (function(){
-if(sessionStorage.getItem("nexus_loop_lic")==="1"){window.location.replace("index.html");return}
-
 var FALLBACK_KEYS=["NEXUS-LOOP-2024-VIP","K2NT1-ALPHA-KEY-001","K2NT1-BETA-KEY-002"];
 var i=document.getElementById("k"),b=document.getElementById("s"),er=document.getElementById("e"),busy=false;
 
 function n(x){return x.replace(/\s+/g,"").toUpperCase()}
 function localCheck(x){var m=n(x);for(var j=0;j<FALLBACK_KEYS.length;j++)if(n(FALLBACK_KEYS[j])===m)return true;return false}
-function ok(){er.textContent="";sessionStorage.setItem("nexus_loop_lic","1");window.location.replace("index.html")}
+function ok(){er.textContent="";sessionStorage.setItem("nexus_loop_verified","1");window.location.replace("index.html")}
 function fail(msg){er.textContent=msg||"Invalid license key. Please try again.";i.value="";i.focus();busy=false}
 
 function t(){

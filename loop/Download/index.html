@@ -378,7 +378,9 @@
     </style>
     <script>
     (function(){
-        if (sessionStorage.getItem("nexus_loop_lic") !== "1") {
+        if (sessionStorage.getItem("nexus_loop_verified") === "1") {
+            sessionStorage.removeItem("nexus_loop_verified");
+        } else {
             window.location.replace("license.html");
         }
     })();
