@@ -1099,11 +1099,6 @@
             var sel = document.getElementById('tier-select');
             if (sel) sel.value = key;
             document.title = 'Nexus Loop | ' + (TIER_TITLES[key] || 'Key Details');
-            try {
-                var url = new URL(window.location);
-                url.searchParams.set('key', key);
-                window.history.replaceState({}, '', url);
-            } catch (e) {}
         }
 
         (function () {
