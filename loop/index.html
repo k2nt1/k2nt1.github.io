@@ -374,6 +374,10 @@
             margin-bottom: 20px;
         }
 
+        .duration-grid--three {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
         .dur-btn {
             background: rgba(255,255,255,0.04);
             border: 1px solid var(--border-color);
@@ -892,12 +896,15 @@
                     <div class="page-right">
                         <div class="purchase-panel">
                             <div class="panel-label">Select Duration</div>
-                            <div class="duration-grid">
+                            <div class="duration-grid duration-grid--three">
                                 <button class="dur-btn active" data-price="$10" onclick="selectDur(this,'full')">
                                     <div class="dur-period">Weekly</div>
                                 </button>
                                 <button class="dur-btn" data-price="$30" onclick="selectDur(this,'full')">
                                     <div class="dur-period">Monthly</div>
+                                </button>
+                                <button class="dur-btn" data-price="$2" onclick="selectDur(this,'full')">
+                                    <div class="dur-period">Daily</div>
                                 </button>
                             </div>
                             <div class="panel-price-display" id="full-price">$10</div>
@@ -980,12 +987,15 @@
                     <div class="page-right">
                         <div class="purchase-panel">
                             <div class="panel-label">Select Duration</div>
-                            <div class="duration-grid">
+                            <div class="duration-grid duration-grid--three">
                                 <button class="dur-btn active" data-price="$8" onclick="selectDur(this,'rank')">
                                     <div class="dur-period">Weekly</div>
                                 </button>
                                 <button class="dur-btn" data-price="$20" onclick="selectDur(this,'rank')">
                                     <div class="dur-period">Monthly</div>
+                                </button>
+                                <button class="dur-btn" data-price="$1.5" onclick="selectDur(this,'rank')">
+                                    <div class="dur-period">Daily</div>
                                 </button>
                             </div>
                             <div class="panel-price-display" id="rank-price">$8</div>
@@ -1064,12 +1074,15 @@
                     <div class="page-right">
                         <div class="purchase-panel">
                             <div class="panel-label">Select Duration</div>
-                            <div class="duration-grid">
+                            <div class="duration-grid duration-grid--three">
                                 <button class="dur-btn active" data-price="$5" onclick="selectDur(this,'light')">
                                     <div class="dur-period">Weekly</div>
                                 </button>
                                 <button class="dur-btn" data-price="$15" onclick="selectDur(this,'light')">
                                     <div class="dur-period">Monthly</div>
+                                </button>
+                                <button class="dur-btn" data-price="$1" onclick="selectDur(this,'light')">
+                                    <div class="dur-period">Daily</div>
                                 </button>
                             </div>
                             <div class="panel-price-display" id="light-price">$5</div>
